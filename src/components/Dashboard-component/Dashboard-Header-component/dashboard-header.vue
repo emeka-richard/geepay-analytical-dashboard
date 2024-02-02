@@ -47,7 +47,7 @@ watch(isLightMood, (currentAppMood, prevAppMood)=>{
     h1Color.value = `var(--color-set-11)`
     inputBgColor.value = `var(--color-set-2)`
   } else {
-    h1Color.value = `var(--color-set-1)`
+    h1Color.value = `var(--color-set-7)`
     inputBgColor.value = `var(--color-set-28)`
   }
   return;
@@ -58,14 +58,16 @@ watch(isLightMood, (currentAppMood, prevAppMood)=>{
 <style scoped>
 .dashboard-header-section {
   width: 100%;
+  height: 5.75rem;
   display: flex;
   /* max-width: 85rem; */
-  padding: 1.125rem 1.25rem;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   border-bottom: 1px solid var(--color-set-32);
+  padding: 1.25rem;
 }
+
 .dashboard-header-wrapper {
   width: 100%;
   /* max-width: 82.5rem; */
@@ -119,7 +121,7 @@ watch(isLightMood, (currentAppMood, prevAppMood)=>{
     font-weight: 400;
     line-height: 1.5rem;
     border-radius: inherit;
-    background: transparent;
+    background: none;
   }
 }
 </style>
