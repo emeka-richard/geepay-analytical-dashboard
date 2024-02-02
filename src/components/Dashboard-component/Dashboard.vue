@@ -2,14 +2,11 @@
   <section class="dashboard-wrapper">
     <dashboardHeader />
     <section class="dashboard-view-container">
-      <!-- <div class="dashboard-view-trend-section"> -->
         <dashboardSaleTrend />
         <dashboardGraphsTrend />
-      <!-- </div>
-      <div class="dashboard-view-orderANDplatform-section"> -->
         <dashboardOrderList />
         <dashboardShowPlatform />
-      <!-- </div> -->
+        <!-- <dashboardAreaChart /> -->
     </section>
   </section>
 </template>
@@ -20,6 +17,7 @@ import dashboardSaleTrend from "./dashboard-saleTrend.vue";
 import dashboardGraphsTrend from "@/components/Dashboard-component/Dashboard-GraphTrend-component/dashboard-graphsTrend.vue";
 import dashboardOrderList from "./dashboard-orderList.vue";
 import dashboardShowPlatform from "@/components/Dashboard-component/Dashboard-Platform-component/dashboard-showPlatform.vue";
+// import dashboardAreaChart from "./dashboard-areaChart.vue";
 </script>
 
 <style scoped>

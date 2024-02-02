@@ -9,7 +9,7 @@
     --color-set-3: #EDF2F7;
     --color-set-4: rgba(52, 202, 165, 0.10);
     --color-set-5: #34CAA5;
-    --color-set-gradient: linear-gradient(180deg, var(--color-set-5) 0%, rgba(52, 202, 165, 0.00) 100%);
+    --color-set-gradient: linear-gradient(180deg, #34CAA5 0%, rgba(52, 202, 165, 0.00) 100%);
     --color-set-7: #DADDDD;
     --color-set-8: #ED544E;
     --color-set-9: #737373;
@@ -20,6 +20,7 @@
     --color-set-14: #E5EAEF;
     --color-set-15: #0D062D;
     --color-set-16: rgba(237, 84, 78, 0.12);
+    --color-set-16-i: rgb(237, 83, 78);
     --color-set-17: rgba(52, 202, 165, 0.12);
     --color-set-18: #606060;
     --color-set-19: #898989;
@@ -31,14 +32,17 @@
     --color-set-25: #FFB74A;
     --color-set-26: #0D062D;
     --color-set-27: #9CA4AB;
-    --color-set-28: #E1DFDF;
-    --color-set-29: #EBECF2;
+    --color-set-28: #e1dfdfdf;
+    --color-set-29: #ced1e3;
     --color-set-30: #F7F8FA;
+    --color-set-30-i: #f7f8fad3;
     --color-set-31: #131313e7;
     --color-set-32: #acb1b52b;
     --color-set-33: #B2ABAB;
     --color-set-34: #090909e9;
     --color-set-35: #FF4A55;
+    --color-set-36: #292D32;
+    --color-set-37: ##FF9800, #2E93fA, #DCE6EC,;
 
 }
 
@@ -55,6 +59,7 @@ html {
 
 body {
     width: 100%;
+    /* max-width: 100vw; */
     height: 100%;
     min-height: 100vh;
     background: var(--color-set-2);

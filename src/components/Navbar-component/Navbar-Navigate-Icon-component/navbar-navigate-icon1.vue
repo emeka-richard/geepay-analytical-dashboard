@@ -89,7 +89,7 @@ watch(
       svgFill.value = `var(--color-set-26)`;
     } else if (currentIconName === "icon1" && currentAppMood === false) {
       opacity.value = 1;
-      svgFill.value = `var(--color-set-1)`;
+      svgFill.value = `var(--color-set-7)`;
     }
     return;
   }

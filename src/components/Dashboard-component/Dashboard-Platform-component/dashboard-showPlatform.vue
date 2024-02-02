@@ -1,7 +1,7 @@
 <template>
-  <section class="dashboard-showPlatform-wrapper">
+  <section :style="{ backgroundColor: `${bgColor}`}" class="dashboard-showPlatform-wrapper">
     <div class="dashboard-showPlatform-header">
-      <h4 class="showPlatform-header-title">Top Platform</h4>
+      <h4 :style="{ color: `${headerColor}`}" class="showPlatform-header-title">Top Platform</h4>
       <h4 class="showPlatform-header-seeAll">See All</h4>
     </div>
     <ul class="dashboard-showPlatform-list-container">
@@ -10,7 +10,7 @@
         :key="platform.id"
         class="dashboard-showPlatform-list-item"
       >
-        <h4 class="platform-name">{{ platform.name }}</h4>
+        <h4 :style="{ color: `${platformNameColor}`}" class="platform-name">{{ platform.name }}</h4>
         <div class="showPlatform-progress-bar-container">
           <div
             class="showPlatform-progress-bar-core"
@@ -22,8 +22,8 @@
           ></div>
         </div>
         <div class="showPlatform-amount-percentage">
-          <small>${{ platform.amount }}</small>
-          <small>+{{ platform.percentage }}%</small>
+          <small :style="{ color: `${smallTagColor}`}">${{ platform.amount }}</small>
+          <small :style="{ color: `${smallTagColor}`}">+{{ platform.percentage }}%</small>
         </div>
       </li>
     </ul>
@@ -31,6 +31,29 @@
 </template>
 
 <script setup>
+import { ref, onMounted, inject, watch } from "vue";
+
+const isLightMood = inject('isLightMood')
+const bgColor = ref(`var(--color-set-2)`);
+const headerColor = ref(`var(--color-set-11)`);
+const platformNameColor = ref(`var(--color-set-21)`);
+const smallTagColor = ref(`var(--color-set-20)`);
+
+watch(isLightMood, (currentIconName, prevIconName) => {
+  if (currentIconName === true) {
+    bgColor.value = `var(--color-set-2)`;
+    headerColor.value = `var(--color-set-11)`;
+    platformNameColor.value = `var(--color-set-21)`;
+    smallTagColor.value = `var(--color-set-20)`;
+  } else if (currentIconName === false) {
+    bgColor.value = `var(--color-set-31)`;
+    headerColor.value = `var(--color-set-7)`;
+    platformNameColor.value = `var(--color-set-28)`;
+    smallTagColor.value = `var(--color-set-27)`;
+  }
+})
+
+
 const platformList = [
   {
     id: "book_bazaar",
@@ -93,7 +116,7 @@ li {
   align-self: stretch;
 
   .showPlatform-header-title {
-    color: #26282c;
+    color: var(--color-set-11);
 
     /* Body Text/Plus Jakarta Sans/SemiBold/18 */
     font-family: "Plus Jakarta Sans";
@@ -131,7 +154,7 @@ li {
   gap: 17px;
   .platform-name {
     width: 124.414px;
-    color: var(--Black, #22242c);
+    color: var(--color-set-21);
 
     /* Body Text/Plus Jakarta Sans/SemiBold/18 */
     font-family: "Plus Jakarta Sans";
@@ -160,7 +183,7 @@ li {
   align-items: center;
 
   &:first-child {
-    color: var(--Neutral-600, #525252);
+    color: var(--color-set-20);
 
     /* Body Text/Plus Jakarta Sans/Regular/18 */
     font-family: "Plus Jakarta Sans";
@@ -171,7 +194,7 @@ li {
   }
 
   &:last-child {
-    color: var(--Neutral-600, #525252);
+    color: var(--color-set-20);
 
     /* Body Text/Plus Jakarta Sans/Regular/18 */
     font-family: "Plus Jakarta Sans";

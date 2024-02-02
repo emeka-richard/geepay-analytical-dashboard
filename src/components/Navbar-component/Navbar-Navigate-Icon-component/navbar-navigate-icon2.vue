@@ -78,7 +78,7 @@ watch([iconName, isLightMood], ([currentIconName, currentAppMood], [prevIconName
     svgFill.value = `var(--color-set-26)`
   } else if(currentIconName === "icon2" && currentAppMood === false){
     stroke.value = `var(--color-set-1)`
-    svgFill.value = `var(--color-set-1)`
+    svgFill.value = `var(--color-set-7)`
   }
   return;
 })
@@ -91,8 +91,8 @@ const handleNavigate = () => {
       "nav-focus-svg-hidden",
       "nav-focus-svg-show"
     );
-    stroke.value = isLightMood.value === true ? `var(--color-set-26)` : `var(--color-set-1)`
-    svgFill.value = isLightMood.value === true ? `var(--color-set-26)` : `var(--color-set-1)`
+    stroke.value = isLightMood.value === true ? `var(--color-set-26)` : `var(--color-set-7)`
+    svgFill.value = isLightMood.value === true ? `var(--color-set-26)` : `var(--color-set-7)`
     emit("emit-icon", "icon2")
   }
 };

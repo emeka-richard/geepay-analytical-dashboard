@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "pinia": "^2.1.7",
+    "apexcharts": "^3.45.2",
+    "i": "^0.3.7",
+    "npm": "^10.4.0",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5",
+    "vue3-apexcharts": "^1.4.4",
     "vuejs3-datepicker": "^1.1.2"
   },
   "devDependencies": {

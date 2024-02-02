@@ -1,5 +1,8 @@
 <template>
-  <section class="dashboard-graph-averageSales">
+  <section
+    class="dashboard-graph-averageSales"
+    :style="{ backgroundColor: `${bgColor}`, borderColor: `${bdColor}`}"
+  >
     <div class="dashboard-graph-averageSales-top">
       <div class="average-sales-svg-container">
         <svg
@@ -28,64 +31,34 @@
           />
         </svg>
       </div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="106"
-        height="33"
-        viewBox="0 0 106 33"
-        fill="none"
-      >
-        <path
-          d="M3.00584 8.46666H1L1 33L105 33V11.4536L101.991 18.9203L100.796 21.9069H99.3945L96.5917 18.9203L94.6298 21.907L88.744 21.9072L85.661 18.9204L83.9793 14.4396L81.5317 16.6803L79.3253 18.9203L78.6362 22.3333L77.2349 21.9069H75.5142L72.3048 11.4536L71.3019 14.4403L69.6972 11.4536L68.4937 16.6803L65.2844 7.72028L63.4791 11.4536H60.0692L56.4587 3.98696L54.2523 7.72028L51.3465 5.48L47.806 11.4533L45.5296 1L43.8821 11.4533L32.8928 15.9333L31.4887 12.9466H30.0847L26.8753 8.46666H23.666L22.4625 12.9466L17.6485 3.98666L15.6426 15.9333L14.6397 11.4533H12.4333L10.4274 1L8.4216 9.95999L7.41868 5.48H4.81109L3.00584 8.46666Z"
-          fill="url(#paint0_linear_2133_4778)"
-          fill-opacity="0.16"
-        />
-        <path
-          d="M1 8.4667H3.00584L4.81109 5.48004H7.41868L8.4216 9.96003L10.4274 1.00004L12.4333 11.4534H14.6397L15.6426 15.9333L17.6485 3.9867L22.4625 12.9467L23.666 8.4667H26.8753L30.0847 12.9467H31.4887L32.8928 15.9333L43.8821 11.4534L45.5296 1.00004L47.806 11.4534L51.3465 5.48004L54.2523 7.72032L56.4587 3.987L60.0692 11.4536H63.4791L65.2844 7.72032L68.4937 16.6803L69.6972 11.4536L71.3019 14.4403L72.3048 11.4536L75.5142 21.907H77.2349L78.6362 22.3334L79.3253 18.9203L81.5317 16.6803L83.9794 14.4396L85.661 18.9204L88.744 21.9073L94.6298 21.907L96.5917 18.9203L99.3945 21.907H100.796L101.991 18.9203L105 11.4536"
-          stroke="#ED544E"
-          stroke-linecap="round"
-        />
-        <defs>
-          <linearGradient
-            id="paint0_linear_2133_4778"
-            x1="53"
-            y1="33"
-            x2="53"
-            y2="1"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#ED544E" stop-opacity="0" />
-            <stop offset="0.809892" stop-color="#ED544E" />
-          </linearGradient>
-        </defs>
-      </svg>
+      <areaChartFalls />
     </div>
     <div class="dashboard-graph-averageSales-middle">
       <p>Average Sales</p>
-      <h3>{{ averageSalesFig.sales }}</h3>
+      <h3 :style="{ color: `${figColor}` }">{{ averageSalesFig.sales }}</h3>
     </div>
     <div class="dashboard-graph-averageSales-bottom">
       <div class="dashboard-graph-averageSales-bottom-left">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="10"
-            height="6"
-            viewBox="0 0 10 6"
-            fill="none"
-          >
-            <path
-              d="M0.5 0.5L3.5 3.5L5.5 1.5L9.5 5.5"
-              stroke="#ED544E"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M6 5.5H9.5V2"
-              stroke="#ED544E"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="6"
+          viewBox="0 0 10 6"
+          fill="none"
+        >
+          <path
+            d="M0.5 0.5L3.5 3.5L5.5 1.5L9.5 5.5"
+            stroke="#ED544E"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M6 5.5H9.5V2"
+            stroke="#ED544E"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
         <p>{{ averageSalesFig.percent }}%</p>
       </div>
       <div class="dashboard-graph-averageSales-bottom-right">
@@ -96,6 +69,26 @@
 </template>
 
 <script setup>
+import { ref, watchEffect, watch, onMounted, inject } from "vue";
+import areaChartFalls from "./areaChart-falls.vue";
+
+const isLightMood = inject("isLightMood");
+const bgColor = ref(`var(--color-set-2)`);
+const bdColor = ref(`var(--color-set-3)`);
+const figColor = ref(`var(--color-set-10)`);
+
+watch(isLightMood, (currentIconName, prevIconName) => {
+  if (currentIconName === true) {
+    bgColor.value = `var(--color-set-2)`;
+    bdColor.value = `var(--color-set-3)`;
+    figColor.value = `var(--color-set-10)`;
+  } else if (currentIconName === false) {
+    bgColor.value = `var(--color-set-31)`;
+    bdColor.value = `var(--color-set-32)`;
+    figColor.value = `var(--color-set-7)`;
+  }
+});
+
 const averageSalesFig = {
   sales: 1567,
   percent: "23,5",
@@ -105,7 +98,6 @@ const averageSalesFig = {
 <style scoped>
 .dashboard-graph-averageSales {
   width: 100%;
-  /* max-width: 239px; */
   height: 179px;
   display: flex;
   flex-direction: column;
@@ -113,8 +105,8 @@ const averageSalesFig = {
   border-radius: 14px;
   border: 1px solid #edf2f7;
   background: #fff;
-align-items: flex-start;
-gap: 10px;
+  align-items: flex-start;
+  gap: 10px;
 }
 .dashboard-graph-averageSales-top,
 .dashboard-graph-averageSales-bottom {
@@ -125,39 +117,38 @@ gap: 10px;
 .dashboard-graph-averageSales-middle {
   width: max-content;
   display: flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 5px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
 
-p {
-  color: #898989;
+  p {
+    color: #898989;
 
-/* Body Text/Plus Jakarta Sans/Medium/18 */
-font-family: "Plus Jakarta Sans";
-font-size: 18px;
-font-style: normal;
-font-weight: 500;
-line-height: 26px; /* 144.444% */
-}
+    /* Body Text/Plus Jakarta Sans/Medium/18 */
+    font-family: "Plus Jakarta Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px; /* 144.444% */
+  }
 
-h3 {
-  color: #3A3F51;
+  h3 {
+    color: #3a3f51;
 
-/* Heading Text/Plus Jakarta Sans/SemiBold/24 */
-font-family: "Plus Jakarta Sans";
-font-size: 24px;
-font-style: normal;
-font-weight: 600;
-line-height: 32px; /* 133.333% */
-}
-
+    /* Heading Text/Plus Jakarta Sans/SemiBold/24 */
+    font-family: "Plus Jakarta Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; /* 133.333% */
+  }
 }
 .dashboard-graph-averageSales-bottom {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-align-items: center;
-gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
 }
 .dashboard-graph-averageSales-bottom-left,
 .dashboard-graph-averageSales-bottom-right {
@@ -168,31 +159,31 @@ gap: 10px;
 }
 .dashboard-graph-averageSales-bottom-left {
   display: flex;
-padding: 4px 8px;
-justify-content: center;
-align-items: center;
-gap: 4px;
-border-radius: 1000px;
-background: rgba(237, 84, 78, 0.12);
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 1000px;
+  background: rgba(237, 84, 78, 0.12);
 
-p {
-  color: #ED544E;
+  p {
+    color: #ed544e;
 
-/* Body Text/Plus Jakarta Sans/Medium/12 */
-font-family: "Plus Jakarta Sans";
-font-size: 12px;
-font-style: normal;
-font-weight: 500;
-line-height: 16px; /* 133.333% */
-}
+    /* Body Text/Plus Jakarta Sans/Medium/12 */
+    font-family: "Plus Jakarta Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+  }
 }
 .dashboard-graph-averageSales-bottom-right p {
   color: #606060;
-font-family: Inter;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .average-sales-svg-container {
   width: 40px;
@@ -202,5 +193,10 @@ line-height: normal;
   justify-content: center;
   border: 1px solid #e6e6e6;
   border-radius: 50%;
+
+  &:hover {
+    border: 2px solid var(-color-set-29);
+    cursor: pointer;
+  }
 }
 </style>
