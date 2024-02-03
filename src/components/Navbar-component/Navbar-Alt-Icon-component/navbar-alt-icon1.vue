@@ -34,19 +34,14 @@
 
 <script setup>
 import { ref, inject, watch } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter()
 const stroke = ref(`var(--color-set-33)`);
 const isLightMood = inject("isLightMood");
 const iconName = inject("iconName");
 const emit = inject("emitIconName");
 
-
-// watch(iconName, (currentIconName, prevIconName)=>{
-//   if(currentIconName !== "alt-icon1"){
-//     stroke.value = `#B2ABAB`
-//     return;
-//   }
-// })
 
 watch([iconName, isLightMood], ([currentIconName, currentAppMood], [prevIconName, prevAppMood])=>{
   if(currentIconName !== "alt-icon1"){
@@ -63,6 +58,7 @@ watch([iconName, isLightMood], ([currentIconName, currentAppMood], [prevIconName
 const handleNavigate = () => {
     stroke.value = isLightMood.value === true ? `var(--color-set-26)` : `var(--color-set-2)`
     emit("emit-icon", "alt-icon1")
+    router.push({name: '404-page'})
 };
 </script>
 

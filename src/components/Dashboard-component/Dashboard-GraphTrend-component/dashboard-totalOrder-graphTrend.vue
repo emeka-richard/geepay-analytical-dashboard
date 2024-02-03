@@ -102,8 +102,8 @@ const totalOrderFig = {
 <style scoped>
 .dashboard-graph-totalOrder {
   width: 100%;
-  /* max-width: 239px; */
-  /* height: 179px; */
+  min-width: 240px;
+  height: 179px;
   display: flex;
   flex-direction: column;
   padding: 16px;

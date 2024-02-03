@@ -23,7 +23,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const handleNavigate = ()=>{
-  router.push({name: '404-page'})
+  router.push({name: 'dashboard'})
 }
 </script>
 
@@ -33,7 +33,7 @@ const handleNavigate = ()=>{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: var(--color-set-2);
   border-radius: 50%;
 }
 </style>

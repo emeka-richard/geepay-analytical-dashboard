@@ -26,26 +26,23 @@ import navbarNavigateIcon7Vue from './navbar-navigate-icon7.vue';
 .navbar-navigate-icon-wrapper {
   width: inherit;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  display: none;
+}
+
+
+@media screen and (min-width: 769px) {
+  .navbar-navigate-icon-wrapper {
+  width: inherit;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
-.navbar-navigate-icon-container {
-  width: inherit;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+
 }
-/* .nav-navigate-icon-sunlight {
-  display: flex;
-  width: 1.875rem;
-  padding: 0.41rem 0.47rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5.875rem;
-  background: var(--color-set-5);
-} */
 </style>

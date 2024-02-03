@@ -35,7 +35,7 @@
     </div>
     <div class="dashboard-graph-totalIncome-bottom">
       <div class="dashboard-graph-totalIncome-bottom-left">
-        <div class="totalIncome-bottom-left-svg-container">
+        <!-- <div class="totalIncome-bottom-left-svg-container"> -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="10"
@@ -56,7 +56,7 @@
               stroke-linejoin="round"
             />
           </svg>
-        </div>
+        <!-- </div> -->
         <p>{{ totalIncomeFig.percent }}%</p>
       </div>
       <div class="dashboard-graph-totalIncome-bottom-right">
@@ -96,7 +96,7 @@ const totalIncomeFig = {
 <style scoped>
 .dashboard-graph-totalIncome {
   width: 100%;
-  /* max-width: 239px; */
+  min-width: 240px;
   height: 179px;
   display: flex;
   flex-direction: column;

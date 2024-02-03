@@ -50,7 +50,9 @@
 
 <script setup>
 import { ref, inject, watch } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter()
 const svgItem = ref();
 const stroke = ref(`var(--color-set-33)`);
 const svgFill = ref(`var(--color-set-26)`);
@@ -58,17 +60,6 @@ const isLightMood = inject("isLightMood");
 const iconName = inject("iconName");
 const emit = inject("emitIconName");
 
-
-// watch(iconName, (currentIconName, prevIconName)=>{
-//   if(currentIconName !== "icon6"){
-//     svgItem.value.classList.replace(
-//       "nav-focus-svg-show",
-//       "nav-focus-svg-hidden"
-//     );
-//     stroke.value = `#B2ABAB`
-//     return;
-//   }
-// })
 
 watch([iconName, isLightMood], ([currentIconName, currentAppMood], [prevIconName, prevAppMood])=>{
   if(currentIconName !== "icon6"){
@@ -99,10 +90,19 @@ const handleNavigate = () => {
     svgFill.value = isLightMood.value === true ? `var(--color-set-26)` : `var(--color-set-7)`
     emit("emit-icon", "icon6")
   }
+  router.push({ name: "404-page"})
 };
 </script>
 
 <style scoped>
+.navbar-navigate-icon-container {
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .navbar-navigate-svg {
   width: 100%;
@@ -111,11 +111,29 @@ const handleNavigate = () => {
   align-items: center;
   justify-content: center;
 }
+
 .nav-focus-svg-hidden {
   display: none;
 }
 .nav-focus-svg-show {
-  display: block;
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .navbar-navigate-svg {
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-focus-svg-hidden {
+    display: none;
+  }
+  .nav-focus-svg-show {
+    display: block;
+  }
 }
 
 </style>

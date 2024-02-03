@@ -103,7 +103,7 @@ const totalRefundFig = {
 <style scoped>
 .dashboard-graph-totalRefund {
   width: 100%;
-  /* max-width: 239px; */
+  min-width: 240px;
   height: 179px;
   display: flex;
   flex-direction: column;

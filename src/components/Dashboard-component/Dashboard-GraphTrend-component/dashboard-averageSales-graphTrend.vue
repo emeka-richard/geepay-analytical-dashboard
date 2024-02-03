@@ -98,6 +98,7 @@ const averageSalesFig = {
 <style scoped>
 .dashboard-graph-averageSales {
   width: 100%;
+  min-width: 240px;
   height: 179px;
   display: flex;
   flex-direction: column;

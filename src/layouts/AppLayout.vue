@@ -9,17 +9,11 @@
 import Navbar from "@/components/Navbar-component/Navbar.vue";
 import Dashboard from "@/components/Dashboard-component/Dashboard.vue";
 
-import { ref, provide, watch, onBeforeMount  } from "vue";
-// import { useAppModeStore } from '../pinia-store/AppModeStore'
-
-// const appModeStore = useAppModeStore()
-
-// console.log(appModeStore.currentMode)
+import { ref, provide, watch, onBeforeMount } from "vue";
 
 const isLightMood = ref(true);
 
 const bgColor = ref(`var(--color-set-30)`);
-
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {
@@ -31,19 +25,8 @@ watch(isLightMood, (currentIconName, prevIconName) => {
 
 provide("isLightMood", isLightMood);
 provide("emitAppMood", (eventName, data) => {
-  // appModeStore.setMode(data)
   isLightMood.value = data;
-  localStorage.setItem("mode", JSON.stringify(data))
 });
-
-onBeforeMount(()=>{
-  const prevAppMode = localStorage.getItem("mode")
-  if(prevAppMode){
-    const jsonAppModeConfig = JSON.parse(prevAppMode)
-    isLightMood.value = jsonAppModeConfig
-  }
-})
-
 </script>
 
 <style scoped>
@@ -52,5 +35,16 @@ onBeforeMount(()=>{
   height: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 769px) {
+  .appLayout-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+  }
 }
 </style>

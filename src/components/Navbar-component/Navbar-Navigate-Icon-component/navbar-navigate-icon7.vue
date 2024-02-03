@@ -118,6 +118,9 @@
 
 <script setup>
 import { ref, inject, watch } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 const sunlightFill = ref(`var(--color-set-2)`);
 const moonFill = ref(`var(--color-set-33)`);

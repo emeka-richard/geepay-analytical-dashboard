@@ -35,6 +35,12 @@ watch(isLightMood, (currentIconName, prevIconName) => {
 
 <style scoped>
 .dashboard-notification-wrapper {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+
+.dashboard-notification-wrapper {
   display: flex;
   width: 40px;
   height: 40px;
@@ -44,5 +50,6 @@ watch(isLightMood, (currentIconName, prevIconName) => {
   gap: 6px;
   border-radius: 27px;
   border: 0.769px solid var(--color-set-7);
+}
 }
 </style>

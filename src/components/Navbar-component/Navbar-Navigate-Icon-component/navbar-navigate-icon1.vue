@@ -49,7 +49,9 @@
 
 <script setup>
 import { ref, inject, onBeforeMount, watch } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const iconName = inject("iconName");
 const svgItem = ref("");
 const opacity = ref(1);
@@ -57,14 +59,6 @@ const svgFill = ref(`var(--color-set-26)`);
 
 const isLightMood = inject("isLightMood");
 const emit = inject("emitIconName");
-
-// watch(isLightMood, (currentAppMood, prevAppMood)=>{
-//   if(currentAppMood === false){
-//     svgFill.value = `var(--color-set-23)`
-//   } else {
-//     svgFill.value = `var(--color-set-26)`
-//   }
-// })
 
 watch(
   [iconName, isLightMood],
@@ -76,12 +70,12 @@ watch(
       );
       opacity.value = 0.4;
       svgFill.value = `var(--color-set-33)`;
-    } else if(currentIconName !== "icon1" && currentAppMood === false){
+    } else if (currentIconName !== "icon1" && currentAppMood === false) {
       svgItem.value.classList.replace(
         "nav-focus-svg-show",
         "nav-focus-svg-hidden"
       );
-      opacity.value = 0.4
+      opacity.value = 0.4;
       svgFill.value = `var(--color-set-1)`;
     }
     if (currentIconName === "icon1" && currentAppMood === true) {
@@ -106,10 +100,19 @@ const handleNavigate = () => {
     opacity.value = 1;
     emit("emit-icon", "icon1");
   }
+  router.push({ name: "dashboard" });
 };
 </script>
 
 <style scoped>
+.navbar-navigate-icon-container {
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .navbar-navigate-svg {
   width: 100%;
   height: 2.5rem;
@@ -122,11 +125,23 @@ const handleNavigate = () => {
   display: none;
 }
 .nav-focus-svg-show {
-  display: block;
+  display: none;
 }
-.nav-focus-svg-show:focus {
-  display: block;
-  width: 10rem;
-  fill: red;
+
+@media screen and (min-width: 769px) {
+  .navbar-navigate-svg {
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-focus-svg-hidden {
+    display: none;
+  }
+  .nav-focus-svg-show {
+    display: block;
+  }
 }
 </style>

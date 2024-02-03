@@ -1,12 +1,13 @@
 <template>
-  <section
+  <div class="dashboard-orderList-divSection">
+    <section
     class="dashboard-salesTrend-wrapper"
     :style="{ backgroundColor: `${bgColor}`, borderColor: `${bdColor}` }"
   >
     <section class="dashboard-salesTrend-container">
       <h4 :style="{ color: `${titleColor}` }">Sales Trends</h4>
       <div class="dashboard-sales-sorting-container">
-        <label for="sales-sorting-range">Sort by:</label>
+        <label :style="{ color: `${titleColor}` }" for="sales-sorting-range">Sort by:</label>
         <div
           class="sorting-range-and-svg-container"
           :style="{ backgroundColor: `${bgColor}`, borderColor: `${bdColor}` }"
@@ -34,18 +35,20 @@
     <div id="salesTrend-graph" class="dashboard-salesTrend-graph">
       <apexchart
         ref="chart"
-        height="290"
+        height="280"
         width="100%"
+        min-width="600"
         type="bar"
         :options="chartOptions"
         :series="chartOptions.series"
       ></apexchart>
     </div>
   </section>
+  </div>
 </template>
 
 <script setup>
-import { ref, watchEffect, watch, onMounted, inject } from "vue";
+import { ref, watchEffect, watch, onMounted, onUpdated, inject } from "vue";
 import VueApexCharts from 'vue3-apexcharts'
 
 const isLightMood = inject("isLightMood");
@@ -135,35 +138,6 @@ const chartOptions = ref({
   ],
 });
 
-// const chartRendered = ()=> {
-//   VueApexCharts.exec(
-//     chartRef.value.uid,
-//     "on",
-//     "dataPointMouseEnter",
-//     (event, chartContext, config) => {
-//       const hoverColor = "#ffcc00"; // Set your desired hover color
-//       // Change the bar color on mouse enter
-//       chartContext.updateOptions({
-//         plotOptions: {
-//           bar: {
-//             colors: [hoverColor],
-//           },
-//         },
-//       });
-//     }
-//   );
-
-//   VueApexCharts.exec(chartRef.value.uid, 'on', 'dataPointMouseLeave', (event, chartContext, config) => {
-//         // Revert to the original color on mouse leave
-//         chartContext.updateOptions({
-//           plotOptions: {
-//             bar: {
-//               colors: undefined, // Revert to the default colors
-//             },
-//           },
-//         });
-//       });
-// };
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {
@@ -176,18 +150,49 @@ watch(isLightMood, (currentIconName, prevIconName) => {
     titleColor.value = `var(--color-set-28)`;
   }
 });
+onUpdated(() => {
+  if (isLightMood.value === true) {
+    bgColor.value = `var(--color-set-2)`;
+    bdColor.value = `var(--color-set-3)`;
+    titleColor.value = `var(--color-set-21)`;
+  } else if (isLightMood.value === false) {
+    bgColor.value = `var(--color-set-31)`;
+    bdColor.value = `var(--color-set-32)`;
+    titleColor.value = `var(--color-set-28)`;
+  }
+});
 </script>
 
 <style scoped>
+.dashboard-orderList-divSection {
+  width: 100%;
+  height: max-content;
+  /* min-width: 700px; */
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.dashboard-orderList-divSection::-webkit-scrollbar {
+  height: max-content;
+}
+.dashboard-orderList-divSection::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+.dashboard-orderList-divSection::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
 .dashboard-salesTrend-wrapper {
   width: 100%;
+
+  min-width: 650px;
   height: 100%;
-  max-width: 1006px;
+  min-width: 600px;
   max-height: 374px;
   flex-shrink: 0;
   border-radius: 14px;
   border: 1px solid;
-  background: #fff;
+  background: var(--color-set-2);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -201,8 +206,8 @@ watch(isLightMood, (currentIconName, prevIconName) => {
   justify-content: space-between;
   align-items: center;
 }
-.dashboard-salesTrend-container > h4 {
-  color: #26282c;
+.dashboard-salesTrend-container h4 {
+  color: var(--color-set-11);
 }
 .dashboard-sales-sorting-container {
   display: flex;
@@ -214,15 +219,9 @@ watch(isLightMood, (currentIconName, prevIconName) => {
 #sales-sorting-range {
   outline: none;
   border: none;
-  color: #3a3f51;
-  font-family: "Plus Jakarta Sans";
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 133.333% */
 }
-#sales-sorting-range option {
-  color: #3a3f51;
+#sales-sorting-range, #sales-sorting-range option {
+  color: var(--color-set-10);
   font-family: "Plus Jakarta Sans";
   font-size: 12px;
   font-style: normal;
@@ -236,13 +235,12 @@ watch(isLightMood, (currentIconName, prevIconName) => {
   align-items: center;
   gap: 10px;
   border-radius: 20px;
-  border: 1px solid #e1dfdf;
-  background: #fff;
+  border: 1px solid var(--color-set-28);
+  background: var(--color-set-2);
 }
 .dashboard-salesTrend-graph {
   width: 100%;
   height: 280px;
-  /* background-color: #525252; */
   box-sizing: border-box;
   -webkit-column-break-inside: avoid;
 }
