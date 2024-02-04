@@ -1,4 +1,5 @@
 <template>
+  <!-- template 1 -->
   <div
     class="dashboard-userInfo-wrapper-1"
     :style="{ backgroundColor: `${bgColor}` }"
@@ -25,6 +26,8 @@
       />
     </svg>
   </div>
+
+  <!-- template 2 -->
   <div
     class="dashboard-userInfo-wrapper-2"
     :style="{ backgroundColor: `${bgColor}` }"
@@ -51,6 +54,22 @@
       />
     </svg>
   </div>
+
+  <!-- template 3 -->
+  <!-- <div
+    class="dashboard-userInfo-wrapper-3"
+    :style="{ backgroundColor: `${bgColor}` }"
+  >
+    <img
+      :src="userInfo.image"
+      alt="user.png"
+      :style="{ borderColor: `${bdColor}` }"
+    />
+    <div class="dashboard-userInfo-tag">
+      <p :style="{ color: `${color}` }">{{ userInfo.name }}</p>
+      <small>{{ userInfo.email }}</small>
+    </div>
+  </div> -->
 </template>
 
 <script setup>
@@ -92,7 +111,17 @@ const userInfo = {
 .dashboard-userInfo-wrapper-2 {
   display: none;
 }
+.dashboard-userInfo-wrapper-3 {
+  display: block;
+}
 @media screen and (min-width: 769px) {
+  .dashboard-userInfo-wrapper-1 {
+    display: none;
+  }
+  .dashboard-userInfo-wrapper-3 {
+    display: none;
+  }
+
   .dashboard-userInfo-wrapper-2 {
     display: flex;
     padding: 0.375rem 0.5rem;
@@ -117,12 +146,6 @@ const userInfo = {
       color: var(--color-set-11);
       font-size: 1rem;
     }
-
-    /* small {
-      color: var(--color-set-13);
-      font-size: 0.875rem;
-    }
- */
     p {
       text-align: right;
       font-family: "Inter";
@@ -138,6 +161,9 @@ const userInfo = {
 
 @media screen and (min-width: 1000px) {
   .dashboard-userInfo-wrapper-2 {
+    display: none;
+  }
+  .dashboard-userInfo-wrapper-3 {
     display: none;
   }
 

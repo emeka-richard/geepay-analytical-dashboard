@@ -2,12 +2,13 @@
   <div class="appLayout-wrapper" :style="{ backgroundColor: `${bgColor}` }">
     <Navbar />
     <RouterView />
+    <navbarMobileFooter />  
   </div>
 </template>
 
 <script setup>
 import Navbar from "@/components/Navbar-component/Navbar.vue";
-import Dashboard from "@/components/Dashboard-component/Dashboard.vue";
+import navbarMobileFooter from "@/components/Navbar-component/navbar-mobile-footer.vue";
 
 import { ref, provide, watch, onBeforeMount } from "vue";
 

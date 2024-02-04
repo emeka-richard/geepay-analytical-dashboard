@@ -62,7 +62,7 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
   justify-content: flex-start;
   align-items: flex-start;
   border-bottom: 1px solid var(--color-set-32);
-  padding: 0.25rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   gap: 1rem;
 }
 .dashboard-header-wrapper {

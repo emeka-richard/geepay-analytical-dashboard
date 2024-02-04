@@ -39,12 +39,10 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
 </script>
 
 <style scoped>
-.dashboard-header-input-container {
+/* .dashboard-header-input-container {
   display: flex;
-  width: 50%;
-  /* max-width: 15rem; */
+  width: 80%;
   height: max-content;
-  /* height: 3rem; */
   padding:.5rem 1rem;
   padding-right: 0.5rem;
   align-items: center;
@@ -67,17 +65,16 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
     background: none;
     
   }
-}
+} */
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 768px) {
   .dashboard-header-input-container {
     display: flex;
-    width: 50%;
-    /* max-width: 21.8rem; */
+    width: 80%;
     height: max-content;
-    /* height: 3rem; */
-    padding-left: 1rem;
-    padding-right: 0.5rem;
+    /* padding-left: 1rem;
+    padding-right: 0.5rem; */
+    padding:.25rem 1rem;
     align-items: center;
     gap: 0.5rem;
     border-radius: 0.5rem;
