@@ -3,6 +3,7 @@
   <div
     class="dashboard-userInfo-wrapper-1"
     :style="{ backgroundColor: `${bgColor}` }"
+    @click="handleDropDown"
   >
     <img
       :src="userInfo.image"
@@ -11,7 +12,7 @@
     />
     <div class="dashboard-userInfo-tag">
       <p :style="{ color: `${color}` }">{{ userInfo.name }}</p>
-      <small>{{ userInfo.email }}</small>
+      <small>{{ userInfo.emailABV }}</small>
     </div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +32,7 @@
   <div
     class="dashboard-userInfo-wrapper-2"
     :style="{ backgroundColor: `${bgColor}` }"
+    @click="handleDropDown"
   >
     <img
       :src="userInfo.image"
@@ -38,8 +40,7 @@
       :style="{ borderColor: `${bdColor}` }"
     />
     <div class="dashboard-userInfo-tag">
-      <p :style="{ color: `${color}` }">{{ userInfo.abb }}</p>
-      <!-- <small>{{ userInfo.email }}</small> -->
+      <h3 :style="{ color: `${color}` }">{{ userInfo.abb }}</h3>
     </div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -55,9 +56,10 @@
     </svg>
   </div>
 
-  <!-- template 3 -->
-  <!-- <div
-    class="dashboard-userInfo-wrapper-3"
+  <!-- template 3 : User Details @Drop Down -->
+  <div
+    v-if="!isNotDropDown"
+    class="dashboard-userDetails-1"
     :style="{ backgroundColor: `${bgColor}` }"
   >
     <img
@@ -65,42 +67,50 @@
       alt="user.png"
       :style="{ borderColor: `${bdColor}` }"
     />
-    <div class="dashboard-userInfo-tag">
-      <p :style="{ color: `${color}` }">{{ userInfo.name }}</p>
+    <div class="dashboard-userDetails-tag">
+      <h4 :style="{ color: `${color}` }">{{ userInfo.name }}</h4>
       <small>{{ userInfo.email }}</small>
     </div>
-  </div> -->
+    <button>View Profile</button>
+  </div>
 </template>
 
 <script setup>
-import userIMG from "@/assets/imgs/user-img.png";
+import userIMG from "@/assets/imgs/emeka-user.png";
 import { ref, watchEffect, watch, onMounted, inject } from "vue";
 
 const isLightMood = inject("isLightMood");
-const color = ref(`var(--color-set-11)`);
-const bgColor = ref(`var(--color-set-2)`);
-const bdColor = ref(`var(--color-set-3)`);
-const svgFill = ref(`var(--color-set-26)`);
+const color = ref();
+const bgColor = ref();
+const bdColor = ref();
+const svgFill = ref();
+
+const isNotDropDown = ref(true);
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {
-    // color.value = `var(--color-set-11)`;
-    // bdColor.value = `var(--color-set-31)`;
-    // svgFill.value = `var(--color-set-26)`;
     bgColor.value = `var(--color-set-2)`;
+    bdColor.value = `var(--color-set-3)`;
+    color.value = `var(--color-set-11)`;
+    svgFill.value = `var(--color-set-26)`
   } else if (currentIconName === false) {
-    // color.value = `var(--color-set-29)`;
-    // bdColor.value = `var(--color-set-30)`;
-    // svgFill.value = `var(--color-set-29)`;
-    bgColor.value = `var(--color-set-7)`;
+    bgColor.value = `var(--color-set-31)`;
+    bdColor.value = `var(--color-set-32)`;
+    color.value = `var(--color-set-30)`;
+    svgFill.value = `var(--color-set-30)`
   }
 });
 
 const userInfo = {
-  name: "Justin Bergson",
-  abb: "JB",
-  email: "Justin@gmail.com",
+  name: "Emeka Omeje",
+  abb: "EO",
+  emailABV: "chukwuemeka...",
+  email: "chukwuemekaomeje.rich@gamil.com",
   image: userIMG,
+};
+
+const handleDropDown = () => {
+  isNotDropDown.value = !isNotDropDown.value;
 };
 </script>
 
@@ -111,14 +121,8 @@ const userInfo = {
 .dashboard-userInfo-wrapper-2 {
   display: none;
 }
-.dashboard-userInfo-wrapper-3 {
-  display: block;
-}
 @media screen and (min-width: 769px) {
   .dashboard-userInfo-wrapper-1 {
-    display: none;
-  }
-  .dashboard-userInfo-wrapper-3 {
     display: none;
   }
 
@@ -128,10 +132,13 @@ const userInfo = {
     justify-content: center;
     align-items: center;
     gap: 0.75rem;
-    border-radius: 1.75rem;
+    border-radius: 2.5rem;
+    /* border-radius: 1.75rem; */
     border: 1px solid var(--color-set-7);
 
     img {
+      width: 44px;
+      height: 44px;
       border: 1px solid;
       border-radius: 50%;
     }
@@ -142,11 +149,11 @@ const userInfo = {
     align-items: flex-end;
     gap: 0.25rem;
 
-    p {
+    h3 {
       color: var(--color-set-11);
       font-size: 1rem;
     }
-    p {
+    h3 {
       text-align: right;
       font-family: "Inter";
       font-style: normal;
@@ -157,27 +164,84 @@ const userInfo = {
   .dashboard-userInfo-container {
     display: flex;
   }
+
+  .dashboard-userDetails-1 {
+    z-index: 1;
+    position: absolute;
+    top: 5.25rem;
+    width: 100%;
+    max-width: 17rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 8px 4px var(--color-set-4);
+    /* transition: all 1000ms ease-in; */
+
+    img {
+      width: 200px;
+      height: 200px;
+      /* border: 1px solid var(--color-set-3); */
+      border: 1px solid var(--color-set-30);
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .dashboard-userDetails-tag {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    button {
+      outline: none;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid var(--color-set-17);
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1000px) {
   .dashboard-userInfo-wrapper-2 {
     display: none;
   }
-  .dashboard-userInfo-wrapper-3 {
-    display: none;
-  }
-
   .dashboard-userInfo-wrapper-1 {
     display: flex;
     padding: 0.375rem 0.5rem;
     justify-content: center;
     align-items: center;
     gap: 0.75rem;
-    border-radius: 1.75rem;
+    border-radius: 2.5rem;
+    /* border-radius: 1.75rem; */
     border: 1px solid var(--color-set-7);
 
     img {
-      border: 1px solid;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--color-set-30);
       border-radius: 50%;
     }
   }
@@ -193,7 +257,8 @@ const userInfo = {
     }
 
     small {
-      color: var(--color-set-13);
+      /* color: var(--color-set-13); */
+      color: var(--color-set-37);
       font-size: 0.875rem;
     }
 

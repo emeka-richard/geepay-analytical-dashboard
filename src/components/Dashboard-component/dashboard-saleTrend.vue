@@ -1,60 +1,60 @@
 <template>
   <div class="dashboard-orderList-divSection">
     <section
-    class="dashboard-salesTrend-wrapper"
-    :style="{ backgroundColor: `${bgColor}`, borderColor: `${bdColor}` }"
-  >
-    <section class="dashboard-salesTrend-container">
-      <h4 :style="{ color: `${titleColor}` }">Sales Trends</h4>
-      <div class="dashboard-sales-sorting-container">
-        <label :style="{ color: `${titleColor}` }" for="sales-sorting-range">Sort by:</label>
-        <div
-          class="sorting-range-and-svg-container"
-          :style="{ backgroundColor: `${bgColor}`, borderColor: `${bdColor}` }"
-        >
-          <select
-            id="sales-sorting-range"
-            v-model="selectedOption"
+      class="dashboard-salesTrend-wrapper"
+      :style="{ backgroundColor: `${bgColor}`, borderColor: `${bdColor}` }"
+    >
+      <section class="dashboard-salesTrend-container">
+        <h4 :style="{ color: `${titleColor}` }">Sales Trends</h4>
+        <div class="dashboard-sales-sorting-container">
+          <label :style="{ color: `${titleColor}` }" for="sales-sorting-range"
+            >Sort by:</label
+          >
+          <div
+            class="sorting-range-and-svg-container"
             :style="{
               backgroundColor: `${bgColor}`,
               borderColor: `${bdColor}`,
-              color: `${titleColor}`,
             }"
           >
-            <option
-              v-for="option in sortRange"
-              :key="option.id"
-              :value="option.id"
+            <select
+              id="sales-sorting-range"
+              v-model="selectedOption"
+              :style="{
+                backgroundColor: `${bgColor}`,
+                borderColor: `${bdColor}`,
+                color: `${titleColor}`,
+              }"
             >
-              {{ option.name }}
-            </option>
-          </select>
+              <option
+                v-for="option in sortRange"
+                :key="option.id"
+                :value="option.id"
+              >
+                {{ option.name }}
+              </option>
+            </select>
+          </div>
         </div>
+      </section>
+      <div id="salesTrend-graph" class="dashboard-salesTrend-graph">
+        <apexchart
+          ref="chart"
+          height="280"
+          width="100%"
+          min-width="600"
+          type="bar"
+          :options="chartOptions"
+          :series="chartOptions.series"
+        ></apexchart>
       </div>
     </section>
-    <div id="salesTrend-graph" class="dashboard-salesTrend-graph">
-      <apexchart
-        ref="chart"
-        height="280"
-        width="100%"
-        min-width="600"
-        type="bar"
-        :options="chartOptions"
-        :series="chartOptions.series"
-      ></apexchart>
-    </div>
-  </section>
   </div>
 </template>
 
 <script setup>
 import { ref, watchEffect, watch, onMounted, onUpdated, inject } from "vue";
-import VueApexCharts from 'vue3-apexcharts'
-
-const isLightMood = inject("isLightMood");
-const bgColor = ref(`var(--color-set-2)`);
-const bdColor = ref(`var(--color-set-3)`);
-const titleColor = ref(`var(--color-set-21)`);
+import VueApexCharts from "vue3-apexcharts";
 
 const selectedOption = ref("weekly");
 const sortRange = [
@@ -89,6 +89,15 @@ const chartOptions = ref({
       distributed: true,
       color: `var(--color-set-4)`,
     },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 0.9,
+        opacityFrom: 1,
+        opacityTo: 0,
+        stops: [0, 90, 100],
+      },
+    },
   },
   legend: {
     show: false,
@@ -109,6 +118,14 @@ const chartOptions = ref({
     type: "bar",
     toolbar: {
       show: false,
+    },
+    dropShadow: {
+      enabled: true,
+      top: 1,
+      left: 1,
+      blur: 1,
+      color: "#34CAA5",
+      opacity: 0.7,
     },
   },
   xaxis: {
@@ -138,6 +155,10 @@ const chartOptions = ref({
   ],
 });
 
+const isLightMood = inject("isLightMood");
+const bgColor = ref();
+const bdColor = ref();
+const titleColor = ref();
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {
@@ -150,7 +171,8 @@ watch(isLightMood, (currentIconName, prevIconName) => {
     titleColor.value = `var(--color-set-28)`;
   }
 });
-onUpdated(() => {
+
+onMounted(() => {
   if (isLightMood.value === true) {
     bgColor.value = `var(--color-set-2)`;
     bdColor.value = `var(--color-set-3)`;
@@ -220,7 +242,8 @@ onUpdated(() => {
   outline: none;
   border: none;
 }
-#sales-sorting-range, #sales-sorting-range option {
+#sales-sorting-range,
+#sales-sorting-range option {
   color: var(--color-set-10);
   font-family: "Plus Jakarta Sans";
   font-size: 12px;

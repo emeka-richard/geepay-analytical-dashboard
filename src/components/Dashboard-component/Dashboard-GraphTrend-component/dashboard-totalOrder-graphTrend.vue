@@ -77,9 +77,21 @@ import { ref, watchEffect, watch, onMounted, inject } from "vue";
 import areaChartRises from "./areaChart-rises.vue";
 
 const isLightMood = inject("isLightMood");
-const bgColor = ref(`var(--color-set-2)`);
-const bdColor = ref(`var(--color-set-3)`);
-const figColor = ref(`var(--color-set-10)`);
+const bgColor = ref();
+const bdColor = ref();
+const figColor = ref();
+
+onMounted(()=>{
+  if (isLightMood.value === true) {
+    bgColor.value = `var(--color-set-2)`;
+    bdColor.value = `var(--color-set-3)`;
+    figColor.value = `var(--color-set-10)`;
+  } else if (isLightMood.value === false) {
+    bgColor.value = `var(--color-set-31)`;
+    bdColor.value = `var(--color-set-32)`;
+    figColor.value = `var(--color-set-7)`;
+  }
+})
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {

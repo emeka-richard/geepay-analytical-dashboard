@@ -34,10 +34,25 @@
 import { ref, onMounted, inject, watch } from "vue";
 
 const isLightMood = inject('isLightMood')
-const bgColor = ref(`var(--color-set-2)`);
-const headerColor = ref(`var(--color-set-11)`);
-const platformNameColor = ref(`var(--color-set-21)`);
-const smallTagColor = ref(`var(--color-set-20)`);
+const bgColor = ref();
+const headerColor = ref();
+const platformNameColor = ref();
+const smallTagColor = ref();
+
+onMounted(()=>{
+  if (isLightMood.value === true) {
+    bgColor.value = `var(--color-set-2)`;
+    headerColor.value = `var(--color-set-11)`;
+    platformNameColor.value = `var(--color-set-21)`;
+    smallTagColor.value = `var(--color-set-20)`;
+  } else if (isLightMood.value === false) {
+    bgColor.value = `var(--color-set-31)`;
+    headerColor.value = `var(--color-set-7)`;
+    platformNameColor.value = `var(--color-set-28)`;
+    smallTagColor.value = `var(--color-set-27)`;
+  }
+})
+
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {

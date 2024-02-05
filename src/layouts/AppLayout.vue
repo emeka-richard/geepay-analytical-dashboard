@@ -2,19 +2,27 @@
   <div class="appLayout-wrapper" :style="{ backgroundColor: `${bgColor}` }">
     <Navbar />
     <RouterView />
-    <navbarMobileFooter />  
+    <!-- <navbarMobileFooter />   -->
   </div>
 </template>
 
 <script setup>
 import Navbar from "@/components/Navbar-component/Navbar.vue";
-import navbarMobileFooter from "@/components/Navbar-component/navbar-mobile-footer.vue";
+// import navbarMobileFooter from "@/components/Navbar-component/navbar-mobile-footer.vue";
 
-import { ref, provide, watch, onBeforeMount } from "vue";
+import { ref, provide, watch, onBeforeMount, onMounted } from 'vue';
 
 const isLightMood = ref(true);
 
-const bgColor = ref(`var(--color-set-30)`);
+const bgColor = ref();
+
+onMounted(()=>{
+  if (isLightMood.value === true) {
+    bgColor.value = `var(--color-set-30)`;
+  } else if (isLightMood.value === false) {
+    bgColor.value = `var(--color-set-31)`;
+  }
+})
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {

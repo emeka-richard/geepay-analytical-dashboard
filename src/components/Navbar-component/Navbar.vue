@@ -6,16 +6,19 @@
         <navbarNavigateIconsVue />
       </section>
       <navbarAltIcons />
-      <fontAwesome />
+      <BarFontAwesome />
     </div>
   </nav>
+  <navbarMobileFooter />
 </template>
 
 <script setup>
 import navbarAppIcon from "./navbar-app-icon.vue";
 import navbarNavigateIconsVue from "./Navbar-Navigate-Icon-component/navbar-navigate-icons.vue";
 import navbarAltIcons from "./Navbar-Alt-Icon-component/navbar-alt-icons.vue";
-import fontAwesome from "./Bar-fontAwesome.vue";
+import navbarMobileFooter from '@/components/Navbar-component/navbar-mobile-footer.vue';
+
+import BarFontAwesome from "./Bar-fontAwesome.vue";
 import { ref, provide } from "vue";
 
 const iconName = ref("icon1");

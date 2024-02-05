@@ -117,7 +117,7 @@
 </template>
 
 <script setup>
-import { ref, inject, watch } from "vue";
+import { ref, inject, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter()
@@ -128,6 +128,20 @@ const bgColor1 = ref(`var(--color-set-2)`);
 const bgColor2 = ref(`var(--color-set-5)`);
 const isLightMood = inject("isLightMood");
 const emit = inject("emitAppMood");
+
+// onMounted(()=>{
+//   if (isLightMood.vaule === true) {
+//     // sunlightFill.value = `var(--color-set-2)`;
+//     // moonFill.value = `var(--color-set-33)`;
+//     bgColor1.value = `var(--color-set-2)`;
+//     bgColor2.value = `var(--color-set-5)`;
+//   } else if(isLightMood.value === false) {
+//     // sunlightFill.value = `var(--color-set-0)`;
+//     // moonFill.value = `var(--color-set-0)`;
+//     bgColor1.value = `var(--color-set-34)`;
+//     bgColor2.value = `var(--color-set-11)`;
+//   }
+// })
 
 watch(isLightMood, (currentAppMood, prevAppMood) => {
   if (currentAppMood === true) {

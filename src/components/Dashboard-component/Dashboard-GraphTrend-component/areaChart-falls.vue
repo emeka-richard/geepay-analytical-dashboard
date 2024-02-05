@@ -99,7 +99,7 @@ const options = {
       enabled: true,
     },
     redrawOnParentResize: true,
-    redrawOnWindowResize: true
+    redrawOnWindowResize: true,
   },
   stroke: {
     width: .7,

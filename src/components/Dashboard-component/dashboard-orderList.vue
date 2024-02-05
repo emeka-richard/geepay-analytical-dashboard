@@ -99,15 +99,15 @@ import orderUser5 from "@/assets/imgs/orderUser5.png";
 
 const statusItem = ref();
 const isLightMood = inject("isLightMood");
-const bgColor = ref(`var(--color-set-2)`);
-const bdColor = ref(`var(--color-set-3)`);
-const headerColor = ref(`var(--color-set-21)`);
-const headerTagColor = ref(`var(--color-set-27)`);
-const imgBdColor = ref(`var(--color-set-21)`);
-const orderNameColor = ref(`var(--color-set-10)`);
-const orderAmountColor = ref(`var(--color-set-26)`);
-const viewSvgFill = ref(`var(--color-set-36)`);
-const viewTagColor = ref(`var(--color-set-26)`);
+const bgColor = ref();
+const bdColor = ref();
+const headerColor = ref();
+const headerTagColor = ref();
+const imgBdColor = ref();
+const orderNameColor = ref();
+const orderAmountColor = ref();
+const viewSvgFill = ref();
+const viewTagColor = ref();
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {
@@ -141,6 +141,29 @@ onMounted(() => {
       status.classList.replace("list-item-fourth", "list-item-fourth-refund");
     }
   });
+
+  if (isLightMood.value === true) {
+    bgColor.value = `var(--color-set-2)`;
+    bdColor.value = `var(--color-set-3)`;
+    headerColor.value = `var(--color-set-21)`;
+    headerTagColor.value = `var(--color-set-27)`;
+    imgBdColor.value = `var(--color-set-21)`;
+    orderNameColor.value = `var(--color-set-10)`;
+    orderAmountColor.value = `var(--color-set-26)`;
+    viewSvgFill.value = `var(--color-set-36)`;
+    viewTagColor.value = `var(--color-set-26)`;
+  } else if (isLightMood.value === false) {
+    bgColor.value = `var(--color-set-31)`;
+    bdColor.value = `var(--color-set-32)`;
+    headerColor.value = `var(--color-set-7)`;
+    headerTagColor.value = `var(--color-set-28)`;
+    imgBdColor.value = `var(--color-set-7)`;
+    orderNameColor.value = `var(--color-set-12)`;
+    orderAmountColor.value = `var(--color-set-7)`;
+    viewSvgFill.value = `var(--color-set-7)`;
+    viewTagColor.value = `var(--color-set-7)`;
+  }
+  
 });
 
 const orderedList = [
