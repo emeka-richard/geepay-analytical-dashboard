@@ -7,7 +7,8 @@
     --color-set-1: #FAFAFA;
     --color-set-2:#FFF;
     --color-set-3: #EDF2F7;
-    --color-set-4: rgba(26, 69, 58, 0.099);
+    --color-set-3-i: #edf2f716;
+    --color-set-4: rgba(26, 69, 58, 0.124);
     --color-set-5: #34CAA5;
     --color-set-gradient: linear-gradient(180deg, #34CAA5 0%, rgba(52, 202, 165, 0.00) 100%);
     --color-set-7: #DADDDD;
@@ -36,7 +37,7 @@
     --color-set-29: #ced1e3;
     --color-set-30: #F7F8FA;
     --color-set-30-i: #f7f8fad3;
-    --color-set-31: #131313e7;
+    --color-set-31: #131313f2;
     --color-set-32: #acb1b52b;
     --color-set-33: #B2ABAB;
     --color-set-34: #090909e9;

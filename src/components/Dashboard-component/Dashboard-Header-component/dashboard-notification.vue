@@ -14,20 +14,52 @@
         :fill=notificationBG
       />
     </svg>
+    <div class="notification-dropDown" :style="{ backgroundColor: `${bgColor}`, boxShadow: `${bxShadow}` }">
+      <p :style="{ color: `${color}` }">No notification yet!</p>
+    </div>
   </section>
 </template>
 
 <script setup>
-import { ref, watch, inject } from "vue";
+import { ref, watch, inject, onMounted } from "vue";
 
 const isLightMood = inject('isLightMood')
-const notificationBG = ref(`var(--color-set-26)`)
+const notificationBG = ref()
+const bgColor = ref();
+const bxShadow = ref();
+const color = ref();
+
+
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {
     notificationBG.value = `var(--color-set-26)`;
+    bgColor.value = `var(--color-set-2)`;
+    color.value = `var(--color-set-11)`;
+
+    bxShadow.value = `0 0 8px 4px var(--color-set-4)`
   } else if (currentIconName === false) {
     notificationBG.value = `var(--color-set-28)`;
+    bgColor.value = `var(--color-set-31)`;
+    color.value = `var(--color-set-30)`;
+
+    bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`
+  }
+})
+
+onMounted(()=>{
+  if (isLightMood.value === true) {
+    notificationBG.value = `var(--color-set-26)`;
+    bgColor.value = `var(--color-set-2)`;
+    color.value = `var(--color-set-11)`;
+
+    bxShadow.value = `0 0 8px 4px var(--color-set-4)`
+  } else if (isLightMood.value === false) {
+    notificationBG.value = `var(--color-set-28)`;
+    bgColor.value = `var(--color-set-31)`;
+    color.value = `var(--color-set-30)`;
+
+    bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`
   }
 })
 
@@ -50,6 +82,26 @@ watch(isLightMood, (currentIconName, prevIconName) => {
   gap: 6px;
   border-radius: 27px;
   border: 0.769px solid var(--color-set-7);
+}
+
+.notification-dropDown {
+  display: none;
+}
+.dashboard-notification-wrapper:hover .notification-dropDown {
+  z-index: 1;
+    position: absolute;
+    top: 5.25rem;
+    /* right: 50px; */
+    width: 100%;
+    max-width: 12rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 8px 4px var(--color-set-4);
+
 }
 }
 </style>

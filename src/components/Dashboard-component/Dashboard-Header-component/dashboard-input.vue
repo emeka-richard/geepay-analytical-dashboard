@@ -72,8 +72,6 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
     display: flex;
     width: 80%;
     height: max-content;
-    /* padding-left: 1rem;
-    padding-right: 0.5rem; */
     padding:.25rem 1rem;
     align-items: center;
     gap: 0.5rem;

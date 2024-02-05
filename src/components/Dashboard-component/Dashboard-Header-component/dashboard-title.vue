@@ -5,11 +5,11 @@
 </template>
 
 <script setup>
-import { ref, inject, watch } from "vue";
+import { ref, inject, watch, onMounted } from "vue";
 
 const componentName = "Dashboard";
 
-const h1Color = ref(`var(--color-set-11)`);
+const h1Color = ref();
 const isLightMood = inject("isLightMood");
 
 watch(isLightMood, (currentAppMood, prevAppMood) => {
@@ -20,6 +20,14 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
   }
   return;
 });
+
+onMounted(()=>{
+  if (isLightMood.value === true) {
+    h1Color.value = `var(--color-set-11)`;
+  } else {
+    h1Color.value = `var(--color-set-7)`;
+  }
+})
 </script>
 
 <style scoped>

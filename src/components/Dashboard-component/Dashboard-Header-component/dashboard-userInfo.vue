@@ -60,7 +60,7 @@
   <div
     v-if="!isNotDropDown"
     class="dashboard-userDetails-1"
-    :style="{ backgroundColor: `${bgColor}` }"
+    :style="{ backgroundColor: `${bgColor}`, boxShadow: `${bxShadow}` }"
   >
     <img
       :src="userInfo.image"
@@ -69,7 +69,7 @@
     />
     <div class="dashboard-userDetails-tag">
       <h4 :style="{ color: `${color}` }">{{ userInfo.name }}</h4>
-      <small>{{ userInfo.email }}</small>
+      <small :style="{ color: `${color}` }">{{ userInfo.email }}</small>
     </div>
     <button>View Profile</button>
   </div>
@@ -82,6 +82,7 @@ import { ref, watchEffect, watch, onMounted, inject } from "vue";
 const isLightMood = inject("isLightMood");
 const color = ref();
 const bgColor = ref();
+const bxShadow = ref();
 const bdColor = ref();
 const svgFill = ref();
 
@@ -93,13 +94,35 @@ watch(isLightMood, (currentIconName, prevIconName) => {
     bdColor.value = `var(--color-set-3)`;
     color.value = `var(--color-set-11)`;
     svgFill.value = `var(--color-set-26)`
+    // bxShadow.value = `var(--color-set-4)`
+    bxShadow.value = `0 0 8px 4px var(--color-set-4)`
   } else if (currentIconName === false) {
     bgColor.value = `var(--color-set-31)`;
     bdColor.value = `var(--color-set-32)`;
     color.value = `var(--color-set-30)`;
     svgFill.value = `var(--color-set-30)`
+    // bxShadow.value = `var(--color-set-3)`
+    bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`
   }
 });
+
+onMounted(()=>{
+  if (isLightMood.value === true) {
+    bgColor.value = `var(--color-set-2)`;
+    bdColor.value = `var(--color-set-3)`;
+    color.value = `var(--color-set-11)`;
+    svgFill.value = `var(--color-set-26)`
+    // bxShadow.value = `var(--color-set-4)`
+    bxShadow.value = `0 0 8px 4px var(--color-set-4)`
+  } else if (isLightMood.value === false) {
+    bgColor.value = `var(--color-set-31)`;
+    bdColor.value = `var(--color-set-32)`;
+    color.value = `var(--color-set-30)`;
+    svgFill.value = `var(--color-set-30)`
+    // bxShadow.value = `var(--color-set-3)`
+    bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`
+  }
+})
 
 const userInfo = {
   name: "Emeka Omeje",

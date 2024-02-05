@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref, inject, onBeforeMount, watch } from "vue";
+import { ref, inject, onBeforeMount, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -88,6 +88,24 @@ watch(
     return;
   }
 );
+
+onMounted(() => {
+  if (iconName.value !== "icon1" && isLightMood.value === false) {
+    svgItem.value.classList.replace(
+      "nav-focus-svg-show",
+      "nav-focus-svg-hidden"
+    );
+    opacity.value = 0.4;
+    svgFill.value = `var(--color-set-1)`;
+  }
+  if (iconName.value === "icon1" && isLightMood.value === true) {
+    opacity.value = 1;
+    svgFill.value = `var(--color-set-26)`;
+  } else if (iconName.value === "icon1" && isLightMood.value === false) {
+    opacity.value = 1;
+    svgFill.value = `var(--color-set-7)`;
+  }
+});
 
 const handleNavigate = () => {
   const isIcon1 = svgItem.value.classList;

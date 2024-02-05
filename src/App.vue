@@ -5,11 +5,6 @@
 </template>
 
 <script setup>
-// import { onBeforeMount } from 'vue';
-// import { useAppModeStore } from './pinia-store/AppModeStore'
-
-// const AppModeStore = useAppModeStore()
-
 </script>
 
 <style scoped>

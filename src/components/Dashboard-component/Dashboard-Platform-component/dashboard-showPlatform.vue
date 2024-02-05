@@ -16,7 +16,6 @@
             class="showPlatform-progress-bar-core"
             :style="{
               width: `${platform.progress}%`,
-              maxWidth: `${platform.maxProgress}px`,
               backgroundColor: `${platform.bgColor}`,
             }"
           ></div>
@@ -75,7 +74,6 @@ const platformList = [
     name: "Book Bazaar",
     amount: "2,500,000",
     progress: 70,
-    maxProgress: 245,
     percentage: "15",
     bgColor: `var(--color-set-22)`,
   },
@@ -84,7 +82,6 @@ const platformList = [
     name: "Artisan Aisle",
     amount: "1,800,000",
     progress: 55,
-    maxProgress: 204.313,
     percentage: "10",
     bgColor: `var(--color-set-24)`,
   },
@@ -93,7 +90,6 @@ const platformList = [
     name: "Toy Troop",
     amount: "1,200,000",
     progress: 45,
-    maxProgress: 122.131,
     percentage: "8",
     bgColor: `var(--color-set-25)`,
   },
@@ -102,7 +98,6 @@ const platformList = [
     name: "Xstore",
     amount: "600,000",
     progress: 30,
-    maxProgress: 122.131,
     percentage: "5",
     bgColor: `var(--color-set-35)`,
   },
