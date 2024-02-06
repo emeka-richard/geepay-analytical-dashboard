@@ -1,19 +1,35 @@
 <template>
-  <section v-if="isNavbarWrapped === true" class="navbar-dropDown" :style="{ backgroundColor: `${bgColor}`, borderColor: `${bdColor}`, boxShadow: `${bxShadow}`}">
+  <section
+    v-if="isNavbarWrapped === true"
+    class="navbar-dropDown"
+    :style="{
+      backgroundColor: `${bgColor}`,
+      borderColor: `${bdColor}`,
+      boxShadow: `${bxShadow}`,
+    }"
+  >
     <ul class="navbar-dropDown-container">
-        <li>
-            <dashboardUserInfo />
-        </li>
-      <li class="navbar-dropDown-item">
-        Mode:
+      <li class="navbar-dropDown-item-mode">
         <navbarNavigateIcon7Vue />
       </li>
-      <li>Trends</li>
-      <li>Billings</li>
-      <li>Communities</li>
-      <li>Support</li>
-      <li>Settings</li>
-      <li>Log out</li>
+      <hr class="major-line"/>
+      <li class="navbar-dropDown-item-user">
+        <dashboardUserInfo />
+      </li>
+      <hr class="major-line"/>
+
+      <li :style="{ color: `${color}` }">Trends</li>
+      <!-- <hr class="minor-line"/> -->
+      <li :style="{ color: `${color}` }">Billings</li>
+      <!-- <hr class="minor-line"/> -->
+      <li :style="{ color: `${color}` }">Communities</li>
+      <hr class="major-line"/>
+
+      <li :style="{ color: `${color}` }">Support</li>
+      <!-- <hr class="minor-line"/> -->
+      <li :style="{ color: `${color}` }">Settings</li>
+      <!-- <hr class="minor-line"/> -->
+      <li :style="{ color: `${color}` }">Log out</li>
     </ul>
   </section>
 </template>
@@ -30,10 +46,9 @@ const bgColor = ref();
 const bxShadow = ref();
 const bdColor = ref();
 
-
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {
-    bgColor.value = `var(--color-set-2)`;
+    bgColor.value = `var(--color-set-30)`;
     bdColor.value = `var(--color-set-3)`;
     color.value = `var(--color-set-11)`;
     bxShadow.value = `0 0 8px 4px var(--color-set-4)`;
@@ -45,10 +60,9 @@ watch(isLightMood, (currentIconName, prevIconName) => {
   }
 });
 
-
 onMounted(() => {
   if (isLightMood.value === true) {
-    bgColor.value = `var(--color-set-2)`;
+    bgColor.value = `var(--color-set-30)`;
     bdColor.value = `var(--color-set-3)`;
     color.value = `var(--color-set-11)`;
     bxShadow.value = `0 0 8px 4px var(--color-set-4)`;
@@ -59,7 +73,6 @@ onMounted(() => {
     bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`;
   }
 });
-
 </script>
 
 <style scoped>
@@ -70,14 +83,33 @@ onMounted(() => {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  
+  padding: 1rem 1rem 2rem 1rem;
   top: 5.25rem;
   width: 18rem;
+  border-radius: .5rem;
 
   .navbar-dropDown-container {
+    width: 100%;
     display: flex;
-  flex-direction: column;
+    flex-direction: column;
     gap: 1rem;
+
+    .major-line {
+      background-color: var(--color-set-29);
+    }
+    /* .minor-line {
+      height: 1px;
+      background-color: var(--color-set-37);
+    } */
+  }
+
+  .navbar-dropDown-item-mode {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    /* background: transparent; */
   }
 
   li {

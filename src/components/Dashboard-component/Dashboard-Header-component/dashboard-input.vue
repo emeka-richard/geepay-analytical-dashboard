@@ -17,15 +17,16 @@
         fill="#78828A"
       />
     </svg>
-    <input name="search-bar" type="text" placeholder="Search..." />
+    <input name="search-bar" v-model="searchParam" type="text" placeholder="Search..." />
   </div>
 </template>
 
 <script setup>
 import { ref, inject, watch } from "vue";
 
-const inputBgColor = ref(`var(--color-set-2)`);
+const searchParam = ref("")
 
+const inputBgColor = ref(`var(--color-set-2)`);
 const isLightMood = inject("isLightMood");
 
 watch(isLightMood, (currentAppMood, prevAppMood) => {

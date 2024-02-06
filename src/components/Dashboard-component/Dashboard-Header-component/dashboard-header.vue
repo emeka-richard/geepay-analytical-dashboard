@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="dateFormat2"><dashboardFormat1 /></div>
+    <!-- <div class="dateFormat2"><dashboardFormat1 /></div> -->
   </section>
 </template>
 

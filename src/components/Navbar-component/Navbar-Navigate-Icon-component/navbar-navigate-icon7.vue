@@ -197,17 +197,31 @@ const handleAppMood = (e) => {
   justify-content: center;
   align-items: center;
   border-radius: 5.875rem;
-  /* background: var(--color-set-5); */
 }
 
 @media screen and (max-width: 768px) {
+  .navbar-navigate-icon-container-1 {
+    /* width: min-content; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    /* width: 50%; */
+    padding: 0.375rem;
+  border-radius: 6.25rem;
+
+  }
   .navbar-navigate-icon-mood {
     /* width: max-content; */
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    /* width: 50%; */
+    gap: 2rem;
   }
 }
 </style>

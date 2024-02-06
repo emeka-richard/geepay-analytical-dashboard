@@ -76,7 +76,7 @@
   </div>
 
   <!-- template 4 : User Details @Mobile DropDown -->
-  <div class="dashboard-mobile-user" :style="{ backgroundColor: `${bgColor}`}">
+  <div class="dashboard-mobile-user">
     <h3 :style="{ color: `${color}` }">{{ userInfo.name }}</h3>
     <small :style="{ color: `${color}` }">{{ userInfo.email }}</small>
   </div>
@@ -160,6 +160,11 @@ const handleDropDown = () => {
 .dashboard-mobile-user {
   display: flex;
   flex-direction: column;
+  gap: .5rem;
+  background: transparent;
+  padding: .5rem 0;
+  /* border-top: 1px solid var(--color-set-29);
+  border-bottom: 1px solid var(--color-set-29) */
 }
 
 
