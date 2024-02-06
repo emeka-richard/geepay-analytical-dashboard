@@ -9,7 +9,9 @@
         <dashboardInputVue />
         <div class="dateFormat"><dashboardFormat /></div>
         <dashboardNotification />
-        <dashboardUserInfo />
+        <div class="dashboard-header-third-column">
+          <dashboardUserInfo />
+        </div>
       </div>
     </div>
     <div class="dateFormat2"><dashboardFormat1 /></div>
@@ -96,6 +98,11 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
     display: none;
   }
 }
+@media screen and (max-width: 768px) {
+  .dashboard-header-third-column {
+    display: none;
+  }
+}
 @media screen and (min-width: 769px) {
   .dateFormat2 {
     display: none;
@@ -128,6 +135,12 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
     align-items: center;
     justify-content: flex-end;
     gap: 1.25rem;
+  }
+  .dashboard-header-third-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
 }
 </style>

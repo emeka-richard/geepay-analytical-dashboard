@@ -5,13 +5,16 @@
 
 <script setup>
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/20/solid'
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 
 const iconColor = ref(`var(--color-set-5)`)
 const isDropDown = ref(false)
 
+const emitNavStatus = inject("emitNavStatus")
+
 const handleDropDown = (e)=>{
     isDropDown.value = e
+    emitNavStatus("nav-status", e)
 }
 </script>
 

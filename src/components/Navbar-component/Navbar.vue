@@ -6,7 +6,10 @@
         <navbarNavigateIconsVue />
       </section>
       <navbarAltIcons />
-      <BarFontAwesome />
+      <div class="nav-container-2">
+        <navbarMobileDropDown />
+        <BarFontAwesome />
+      </div>
     </div>
   </nav>
   <navbarMobileFooter />
@@ -17,16 +20,22 @@ import navbarAppIcon from "./navbar-app-icon.vue";
 import navbarNavigateIconsVue from "./Navbar-Navigate-Icon-component/navbar-navigate-icons.vue";
 import navbarAltIcons from "./Navbar-Alt-Icon-component/navbar-alt-icons.vue";
 import navbarMobileFooter from '@/components/Navbar-component/navbar-mobile-footer.vue';
+import navbarMobileDropDown from "./navbar-mobile-dropDown.vue";
 
 import BarFontAwesome from "./Bar-fontAwesome.vue";
 import { ref, provide } from "vue";
 
 const iconName = ref("icon1");
+const isNavbarWrapped = ref(false);
 
 provide("iconName", iconName);
+provide("isNavbarWrapped", isNavbarWrapped);
 
 provide("emitIconName", (eventName, data) => {
   iconName.value = data;
+});
+provide("emitNavStatus", (eventName, data) => {
+  isNavbarWrapped.value = data;
 });
 </script>
 
@@ -55,6 +64,11 @@ provide("emitIconName", (eventName, data) => {
   align-items: center;
   justify-content: center;
   /* gap: 1.25rem; */
+}
+.nav-container-2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 @media screen and (min-width: 769px) {

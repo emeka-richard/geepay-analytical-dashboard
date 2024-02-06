@@ -57,6 +57,7 @@
   </div>
 
   <!-- template 3 : User Details @Drop Down -->
+
   <div
     v-if="!isNotDropDown"
     class="dashboard-userDetails-1"
@@ -73,6 +74,13 @@
     </div>
     <button>View Profile</button>
   </div>
+
+  <!-- template 4 : User Details @Mobile DropDown -->
+  <div class="dashboard-mobile-user" :style="{ backgroundColor: `${bgColor}`}">
+    <h3 :style="{ color: `${color}` }">{{ userInfo.name }}</h3>
+    <small :style="{ color: `${color}` }">{{ userInfo.email }}</small>
+  </div>
+
 </template>
 
 <script setup>
@@ -93,36 +101,36 @@ watch(isLightMood, (currentIconName, prevIconName) => {
     bgColor.value = `var(--color-set-2)`;
     bdColor.value = `var(--color-set-3)`;
     color.value = `var(--color-set-11)`;
-    svgFill.value = `var(--color-set-26)`
+    svgFill.value = `var(--color-set-26)`;
     // bxShadow.value = `var(--color-set-4)`
-    bxShadow.value = `0 0 8px 4px var(--color-set-4)`
+    bxShadow.value = `0 0 8px 4px var(--color-set-4)`;
   } else if (currentIconName === false) {
     bgColor.value = `var(--color-set-31)`;
     bdColor.value = `var(--color-set-32)`;
     color.value = `var(--color-set-30)`;
-    svgFill.value = `var(--color-set-30)`
+    svgFill.value = `var(--color-set-30)`;
     // bxShadow.value = `var(--color-set-3)`
-    bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`
+    bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`;
   }
 });
 
-onMounted(()=>{
+onMounted(() => {
   if (isLightMood.value === true) {
     bgColor.value = `var(--color-set-2)`;
     bdColor.value = `var(--color-set-3)`;
     color.value = `var(--color-set-11)`;
-    svgFill.value = `var(--color-set-26)`
+    svgFill.value = `var(--color-set-26)`;
     // bxShadow.value = `var(--color-set-4)`
-    bxShadow.value = `0 0 8px 4px var(--color-set-4)`
+    bxShadow.value = `0 0 8px 4px var(--color-set-4)`;
   } else if (isLightMood.value === false) {
     bgColor.value = `var(--color-set-31)`;
     bdColor.value = `var(--color-set-32)`;
     color.value = `var(--color-set-30)`;
-    svgFill.value = `var(--color-set-30)`
+    svgFill.value = `var(--color-set-30)`;
     // bxShadow.value = `var(--color-set-3)`
-    bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`
+    bxShadow.value = `0 0 8px 4px var(--color-set-3-i)`;
   }
-})
+});
 
 const userInfo = {
   name: "Emeka Omeje",
@@ -144,10 +152,25 @@ const handleDropDown = () => {
 .dashboard-userInfo-wrapper-2 {
   display: none;
 }
+
+.dashboard-userDetails-1 {
+  display: none;
+}
+
+.dashboard-mobile-user {
+  display: flex;
+  flex-direction: column;
+}
+
+
 @media screen and (min-width: 769px) {
   .dashboard-userInfo-wrapper-1 {
     display: none;
   }
+  .dashboard-mobile-user {
+  display: none;
+}
+
 
   .dashboard-userInfo-wrapper-2 {
     display: flex;

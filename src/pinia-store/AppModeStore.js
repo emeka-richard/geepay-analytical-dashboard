@@ -11,7 +11,6 @@ export const useAppMode = defineStore('appMode', {
     },
     actions:{
         setAppMode(mode){
-            console.log(mode)
             localStorage.setItem("appMode", JSON.stringify(mode))
             this.appMode = mode
         }

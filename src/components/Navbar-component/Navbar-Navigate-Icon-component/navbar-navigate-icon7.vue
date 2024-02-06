@@ -120,7 +120,7 @@
 import { ref, inject, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
 const sunlightFill = ref();
 const moonFill = ref();
@@ -131,8 +131,7 @@ const bgColor2 = ref();
 // const bgColor1 = ref(`var(--color-set-2)`);
 // const bgColor2 = ref(`var(--color-set-5)`);
 const isLightMood = inject("isLightMood");
-const emit = inject("emitAppMood");
-
+const emitAppMode = inject("emitAppMood");
 
 watch(isLightMood, (currentAppMood, prevAppMood) => {
   if (currentAppMood === true) {
@@ -140,7 +139,7 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
     moonFill.value = `var(--color-set-33)`;
     bgColor1.value = `var(--color-set-2)`;
     bgColor2.value = `var(--color-set-5)`;
-  } else if(currentAppMood === false) {
+  } else if (currentAppMood === false) {
     sunlightFill.value = `var(--color-set-0)`;
     moonFill.value = `var(--color-set-0)`;
     bgColor1.value = `var(--color-set-34)`;
@@ -149,26 +148,25 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
   return;
 });
 
-onMounted(()=>{
+onMounted(() => {
   if (isLightMood.value === true) {
     sunlightFill.value = `var(--color-set-2)`;
     moonFill.value = `var(--color-set-33)`;
     bgColor1.value = `var(--color-set-2)`;
     bgColor2.value = `var(--color-set-5)`;
-  } else if(isLightMood.value === false) {
+  } else if (isLightMood.value === false) {
     sunlightFill.value = `var(--color-set-0)`;
     moonFill.value = `var(--color-set-0)`;
     bgColor1.value = `var(--color-set-34)`;
     bgColor2.value = `var(--color-set-11)`;
   }
-})
-
+});
 
 const handleAppMood = (e) => {
   if (e === "light") {
-    emit("emit-app-mood", true);
+    emitAppMode("emit-app-mood", true);
   } else {
-    emit("emit-app-mood", false);
+    emitAppMode("emit-app-mood", false);
   }
 };
 </script>
@@ -182,7 +180,6 @@ const handleAppMood = (e) => {
   justify-content: center;
   padding: 0.5rem;
   border-radius: 6.25rem;
-  /* background: #FFF; */
 }
 .navbar-navigate-icon-mood {
   /* width: max-content; */
@@ -201,5 +198,16 @@ const handleAppMood = (e) => {
   align-items: center;
   border-radius: 5.875rem;
   /* background: var(--color-set-5); */
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-navigate-icon-mood {
+    /* width: max-content; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
 }
 </style>

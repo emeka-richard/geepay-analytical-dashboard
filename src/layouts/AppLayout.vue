@@ -12,26 +12,18 @@ import {useAppMode} from "../pinia-store/AppModeStore"
 const store = useAppMode();
 const appMode = store.getAppMode
 
-console.log(appMode)
 const isLightMood = ref();
-// const isLightMood = ref(true);
 
 const bgColor = ref();
-
-// import { onBeforeMount } from 'vue';
-// import {useAppMode} from './pinia-store/AppModeStore'
-// const store = useAppMode()
 
 onBeforeMount(()=>{
   const initialAppMode = localStorage.getItem("appMode")
   if(initialAppMode){
-    console.log("Yes")
     const jsonAppMode = JSON.parse(initialAppMode)
     store.setAppMode(jsonAppMode)
     isLightMood.value = jsonAppMode
     return;
   }
-  console.log("Nah")
   isLightMood.value = appMode
 
 })
