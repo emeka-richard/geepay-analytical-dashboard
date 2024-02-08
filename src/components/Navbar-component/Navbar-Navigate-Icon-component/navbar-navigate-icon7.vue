@@ -172,6 +172,9 @@ const handleAppMood = (e) => {
 </script>
 
 <style scoped>
+/* svg {
+  cursor: pointer;
+} */
 .navbar-navigate-icon-container-1 {
   /* width: min-content; */
   display: flex;

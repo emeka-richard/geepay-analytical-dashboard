@@ -14,7 +14,7 @@
 import dashboardHeader from "@/components/Dashboard-component/Dashboard-Header-component/dashboard-header.vue";
 import dashboardSaleTrend from "./dashboard-saleTrend.vue";
 import dashboardGraphsTrend from "@/components/Dashboard-component/Dashboard-GraphTrend-component/dashboard-graphsTrend.vue";
-import dashboardOrderList from "./dashboard-orderList.vue";
+import dashboardOrderList from "./Dashboard-OrderList-component/dashboard-orderList.vue";
 import dashboardShowPlatform from "@/components/Dashboard-component/Dashboard-Platform-component/dashboard-showPlatform.vue";
 </script>
 
@@ -37,7 +37,7 @@ import dashboardShowPlatform from "@/components/Dashboard-component/Dashboard-Pl
   gap: 20px;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .dashboard-wrapper {
     padding-top: 5.125rem;
   }
@@ -46,7 +46,7 @@ import dashboardShowPlatform from "@/components/Dashboard-component/Dashboard-Pl
   .dashboard-wrapper {
     padding-left: 5rem;
   }
-}
+} */
 @media screen and (min-width: 1300px) {
   .dashboard-wrapper {
     .dashboard-view-container {

@@ -41,6 +41,8 @@ import { ref, watchEffect, watch, onMounted, inject } from "vue";
 
 const isLightMood = inject("isLightMood");
 const isNavbarWrapped = inject("isNavbarWrapped");
+console.log(isNavbarWrapped.value)
+
 const color = ref();
 const bgColor = ref();
 const bxShadow = ref();

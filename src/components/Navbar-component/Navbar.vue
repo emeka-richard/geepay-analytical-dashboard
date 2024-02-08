@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-wrapper">
+  <nav class="nav-wrapper" :style="{ backgroundColor: `${navBGColor}`}">
     <div class="nav-main-container">
       <section class="nav-container-1">
         <navbarAppIcon />
@@ -23,8 +23,11 @@ import navbarMobileFooter from '@/components/Navbar-component/navbar-mobile-foot
 import navbarMobileDropDown from "./navbar-mobile-dropDown.vue";
 
 import BarFontAwesome from "./Bar-fontAwesome.vue";
-import { ref, provide } from "vue";
+import { ref, provide, inject, onMounted, watch } from "vue";
 
+const isLightMood = inject("isLightMood")
+
+const navBGColor = ref()
 const iconName = ref("icon1");
 const isNavbarWrapped = ref(false);
 
@@ -37,6 +40,23 @@ provide("emitIconName", (eventName, data) => {
 provide("emitNavStatus", (eventName, data) => {
   isNavbarWrapped.value = data;
 });
+
+onMounted(()=>{
+    if (isLightMood.value === true) {
+      navBGColor.value = `var(--color-set-30)`;
+  } else if (isLightMood.value === false) {
+    navBGColor.value = `var(--color-set-31)`;
+  }
+})
+
+watch(isLightMood, (currentIconName, prevIconName) => {
+  if (currentIconName === true) {
+    navBGColor.value = `var(--color-set-30)`;
+  } else if (currentIconName === false) {
+    navBGColor.value = `var(--color-set-31)`;
+  }
+})
+
 </script>
 
 <style scoped>

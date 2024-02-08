@@ -68,7 +68,7 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
   }
 } */
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) { */
   .dashboard-header-input-container {
     display: flex;
     width: 80%;
@@ -79,6 +79,14 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
     border-radius: 0.5rem;
     background: transparent;
     border: 1px solid var(--color-set-7);
+
+    &:hover {
+      border: 2px solid var(--color-set-17-i);
+    }
+
+    &:has(input:focus) {
+      border: 2px solid var(--color-set-17-i);
+    }
 
     input {
       outline: none;
@@ -96,7 +104,7 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
       /* display: none; */
     }
   }
-}
+/* } */
 
 @media screen and (min-width: 769px) {
   .dashboard-header-input-container {
@@ -110,6 +118,14 @@ watch(isLightMood, (currentAppMood, prevAppMood) => {
     gap: 0.5rem;
     border-radius: 1.5rem;
     border: 1px solid var(--color-set-7);
+
+    &:hover {
+      border: 2px solid var(--color-set-17-i);
+    }
+
+    &:has(input:focus) {
+      border: 2px solid var(--color-set-17-i);
+    }
 
     input {
       outline: none;
