@@ -11,6 +11,9 @@
 import Navbar from "@/components/Navbar-component/Navbar.vue";
 import { ref, provide, watch, onBeforeMount, onMounted } from "vue";
 import { useAppMode } from "../pinia-store/AppModeStore";
+// import { useScrollPositionValue } from "../pinia-store/scrollPositionStore";
+// const scrollStore = useScrollPositionValue();
+
 const store = useAppMode();
 const appMode = store.getAppMode;
 
@@ -36,6 +39,10 @@ onMounted(() => {
   } else if (isLightMood.value === false) {
     bgColor.value = `var(--color-set-31)`;
   }
+
+  // window.addEventListener("scroll", () => {
+  //   scrollStore.setScrollPosition(window.scrollY);
+  // });
 });
 
 watch(isLightMood, (currentIconName, prevIconName) => {
@@ -57,11 +64,11 @@ provide("emitAppMood", (eventName, data) => {
 //   isNavbarWrapped.value = data;
 // });
 
-const handleDropDown = (e) => {
-  if (e === false) {
-    isNavbarWrapped.value = e;
-  }
-};
+// const handleDropDown = (e) => {
+//   if (e === false) {
+//     isNavbarWrapped.value = e;
+//   }
+// };
 </script>
 
 <style scoped>
@@ -82,21 +89,19 @@ const handleDropDown = (e) => {
   }
 }
 @media screen and (min-width: 769px) {
-  .appLayout-display {
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    padding-left: 5rem;
-  }
-}
-
-@media screen and (min-width: 769px) {
   .appLayout-wrapper {
     width: 100%;
     height: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: row;
+  }
+
+  .appLayout-display {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding-left: 5rem;
   }
 }
 </style>

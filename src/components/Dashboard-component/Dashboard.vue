@@ -16,6 +16,23 @@ import dashboardSaleTrend from "./dashboard-saleTrend.vue";
 import dashboardGraphsTrend from "@/components/Dashboard-component/Dashboard-GraphTrend-component/dashboard-graphsTrend.vue";
 import dashboardOrderList from "./Dashboard-OrderList-component/dashboard-orderList.vue";
 import dashboardShowPlatform from "@/components/Dashboard-component/Dashboard-Platform-component/dashboard-showPlatform.vue";
+import { onMounted, onBeforeUnmount } from "vue";
+import { useScrollPositionValue } from "../../pinia-store/scrollPositionStore";
+const scrollStore = useScrollPositionValue();
+
+onMounted(()=>{
+  window.addEventListener("scroll", () => {
+    scrollStore.setScrollPosition(window.scrollY);
+  });
+
+})
+
+onBeforeUnmount(()=>{
+  window.removeEventListener("scroll", () => {
+    scrollStore.setScrollPosition(window.scrollY);
+  });
+})
+
 </script>
 
 <style scoped>

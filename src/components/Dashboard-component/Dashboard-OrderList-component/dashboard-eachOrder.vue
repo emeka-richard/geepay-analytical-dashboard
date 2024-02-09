@@ -37,6 +37,20 @@
           orderItem.purchaseId || "No purchase order ID"
         }}</small>
       </div>
+      <div class="dashboard-orderItem-invoice-mobile-1">
+        <h3 :style="{ color: `${color}` }">Date</h3>
+        <small :style="{ color: `${color}` }">{{ orderItem.date }}</small>
+      </div>
+      <div class="dashboard-orderItem-invoice-mobile-2">
+        <h3 :style="{ color: `${color}` }">Description</h3>
+        <small :style="{ color: `${color}` }">{{
+          orderItem.description || "No transaction description."
+        }}</small>
+      </div>
+      <div class="dashboard-orderItem-invoice-mobile-3">
+        <h3 :style="{ color: `${color}` }">Amount</h3>
+        <small :style="{ color: `${color}` }">{{ orderItem.amount }}</small>
+      </div>
     </div>
     <div class="dashboard-orderItem-invoice-section">
       <header>
@@ -126,18 +140,12 @@ const handleCloseInvoice = () => {
 </script>
 
 <style scoped>
-@media screen and (max-width: 768px) {
-    .dashboard-orderItem-wrapper {
-        padding: .5rem;
-        padding-bottom: 1rem;
-    }
-}
 .dashboard-orderItem-wrapper {
   position: absolute;
   justify-self: end;
   font-family: "Plus Jakarta Sans";
   width: 100%;
-  min-width: 20rem;
+  min-width: 200px;
   max-width: 40rem;
   display: flex;
   flex-direction: column;
@@ -207,6 +215,10 @@ header {
     align-items: flex-start;
     justify-content: flex-start;
   }
+
+  .dashboard-orderItem-invoice-mobile-3 {
+    display: none;
+  }
 }
 .dashboard-orderItem-invoice-section {
   width: 100%;
@@ -216,8 +228,8 @@ header {
   justify-content: center;
   border-top: 1px solid var(--color-set-27);
   border-bottom: 1px solid var(--color-set-27);
-  gap: 1rem;
-  padding: 0.5rem 0;
+  gap: 0.5rem;
+  padding: 0.125rem 0;
 
   header,
   section {
@@ -258,6 +270,113 @@ header {
 
   .dashboard-orderItem-orderStatus-status {
     min-width: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-orderItem-wrapper {
+    padding: 1rem;
+    padding-bottom: 2.5rem;
+    width: 300px;
+    gap: 1rem;
+
+    .dashboard-orderItem-partner-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 1rem;
+
+      .dashboard-orderItem-invoice-mobile-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 1rem;
+
+      .dashboard-orderItem-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .dashboard-orderItem-tag {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      .dashboard-orderItem-name,
+      .dashboard-orderItem-tag {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 24px;
+      }
+    }
+  }
+
+  .dashboard-orderItem-invoice-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border-top: 1px solid var(--color-set-27);
+    border-bottom: 1px solid var(--color-set-27); */
+    gap: 0.5rem;
+    padding: 0.125rem 0;
+    display: none;
+
+    header,
+    section {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* gap: 2rem; */
+
+      .header-A,
+      .item-A {
+        width: max-content;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+
+        .header-1,
+        .item-1 {
+          min-width: 120px;
+        }
+      }
+      .header-B,
+      .item-B {
+        width: 100px;
+      }
+    }
+  }
+
+  .dashboard-orderItem-orderStatus-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
   }
 }
 </style>

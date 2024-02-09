@@ -228,7 +228,7 @@ const handleInvoiceOpen = (item) => {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .dashboard-orderList-container {
