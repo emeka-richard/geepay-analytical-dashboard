@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AppLayout from '@/layouts/AppLayout.vue'
-import Dashboard from '@/components/Dashboard-component/Dashboard.vue'
+import { ref } from 'vue';
+// import AppLayout from '@/layouts/AppLayout.vue'
+const AppLayout = ()=>import("@/layouts/AppLayout.vue")
+const Dashboard = ()=>import("@/components/Dashboard-component/Dashboard.vue")
+// import Dashboard from '@/components/Dashboard-component/Dashboard.vue'
 // const DashboardEachOrder = ()=>import('@/components/Dashboard-component/Dashboard-OrderList-component/dashboard-eachOrder.vue')
 const Notfound = ()=>import('@/components/Notfound.vue');
 import { useScrollPositionValue } from "../pinia-store/scrollPositionStore";
@@ -49,4 +52,17 @@ const router = createRouter({
   ],
 });
 
-export default router;
+// Define a ref to track the loading state
+const loading = ref(true);
+
+// Hook into navigation events to manage loading state
+router.beforeEach((to, from, next) => {
+  loading.value = true; // Set loading to true on navigation start
+  next();
+});
+
+router.afterEach(() => {
+  loading.value = false; // Set loading to false on navigation complete
+});
+
+export {router, loading };

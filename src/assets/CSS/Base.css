@@ -7,13 +7,15 @@
   --color-set-2: #fff;
   --color-set-3: #edf2f7;
   --color-set-3-i: #edf2f716;
-  --color-set-4: rgba(26, 69, 58, 0.124);
+  --color-set-4: rgba(130, 177, 165, 0.384);
   --color-set-5: #34caa5;
+  --color-set-5-i: #3fa88e76;
   --color-set-gradient: linear-gradient(
     180deg,
     #34caa5 0%,
     rgba(52, 202, 165, 0) 100%
   );
+  --color-set-gradient-hover: linear-gradient(180deg, #34caa5, rgba(52, 202, 165, 0));
   --color-set-7: #dadddd;
   --color-set-8: #ed544e;
   --color-set-9: #737373;
@@ -79,3 +81,18 @@ body {
 svg {
   cursor: pointer;
 }
+
+/* .apexcharts-bar-area:hover {
+  fill: var(--color-set-5-i) !important;
+} */
+.apexcharts-bar-area:hover::after {
+    content: "" !important;
+    /* position: absolute; */
+    /* top: 0;
+    left: 0; */
+    /* width: 100%;
+    height: 50%; Adjust the height to control the fade-out area */
+    /* background-color: linear-gradient(to bottom, var(--color-set-5-i), white) !important; */
+    background: red !important;
+    pointer-events: none !important; /* This ensures the pseudo-element doesn't interfere with mouse events */
+  }

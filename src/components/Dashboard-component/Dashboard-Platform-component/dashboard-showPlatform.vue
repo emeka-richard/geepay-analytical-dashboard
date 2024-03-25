@@ -181,10 +181,12 @@ li {
   flex-shrink: 0;
   border-radius: 40px;
   background: var(--Gray-2, #f5f5f5);
+  cursor: pointer;
 
   .showPlatform-progress-bar-core {
     height: inherit;
     border-radius: inherit;
+    cursor: pointer;
   }
 }
 .showPlatform-amount-percentage {

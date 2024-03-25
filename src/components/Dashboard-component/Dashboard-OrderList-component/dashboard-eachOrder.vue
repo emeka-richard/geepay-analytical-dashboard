@@ -37,16 +37,6 @@
           orderItem.purchaseId || "No purchase order ID"
         }}</small>
       </div>
-      <div class="dashboard-orderItem-invoice-mobile-1">
-        <h3 :style="{ color: `${color}` }">Date</h3>
-        <small :style="{ color: `${color}` }">{{ orderItem.date }}</small>
-      </div>
-      <div class="dashboard-orderItem-invoice-mobile-2">
-        <h3 :style="{ color: `${color}` }">Description</h3>
-        <small :style="{ color: `${color}` }">{{
-          orderItem.description || "No transaction description."
-        }}</small>
-      </div>
       <div class="dashboard-orderItem-invoice-mobile-3">
         <h3 :style="{ color: `${color}` }">Amount</h3>
         <small :style="{ color: `${color}` }">{{ orderItem.amount }}</small>

@@ -1,10 +1,19 @@
 <template>
-  <main>
-    <router-view></router-view>
-  </main>
+  <Suspense>
+    <template #default>
+      <router-view></router-view>
+    </template>
+    <template #fallback>
+      <spinner v-if="loading" />
+    </template>
+  </Suspense>
 </template>
-
 <script setup>
+import {Suspense, ref} from "vue"
+import spinner from "./spinner.vue"
+import { router, loading } from './router/router';
+
+// const customFallback = ref(spinner);
 </script>
 
 <style scoped>

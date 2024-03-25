@@ -78,24 +78,25 @@ const sortRange = [
 
 const chartRef = ref();
 const chartOptions = ref({
-  colors: [`var(--color-set-4)`],
+  colors: [`var(--color-set-5-i)`],
   plotOptions: {
     bar: {
-      horizontal: false,
-      borderRadius: 10,
+      // horizontal: false,
+      borderRadius: '14',
       borderRadiusApplication: "end",
-      columnWidth: "60%",
-      barHeight: "80%",
-      distributed: true,
-      color: `var(--color-set-4)`,
+      // columnWidth: "60%",
+      // barHeight: "80%",
+      // distributed: true,
+      // endingShape: 'rounded',
     },
     fill: {
       type: "gradient",
       gradient: {
+        type: "vertical",
         shadeIntensity: 0.9,
-        opacityFrom: 1,
-        opacityTo: 0,
-        stops: [0, 90, 100],
+        opacityFrom: 0.9,
+        opacityTo: 0.6,
+        stops: [0, 90, 80],
       },
     },
   },
@@ -104,14 +105,14 @@ const chartOptions = ref({
   },
   dataLabels: {
     enabled: false,
-    position: "buttom",
-    total: {
-      style: {
-        fontSize: "14px",
-        fontFamily: "Plus Jakarta Sans",
-        fontWeight: 600,
-      },
-    },
+    // position: "buttom",
+    // total: {
+    //   style: {
+    //     fontSize: "14px",
+    //     fontFamily: "Plus Jakarta Sans",
+    //     fontWeight: 600,
+    //   },
+    // },
   },
   chart: {
     id: "salesChart",
@@ -124,9 +125,14 @@ const chartOptions = ref({
       top: 1,
       left: 1,
       blur: 1,
-      color: "#34CAA5",
-      opacity: 0.7,
+      // color: "red",
+      color: `var(--color-set-4)`,
+      opacity: 0.6,
     },
+    // events: {
+    //   dataPointMouseEnter: handleBarHover,
+    //   dataPointMouseLeave: handleBarMouseLeave
+    // }
   },
   xaxis: {
     categories: [
@@ -159,6 +165,7 @@ const isLightMood = inject("isLightMood");
 const bgColor = ref();
 const bdColor = ref();
 const titleColor = ref();
+
 
 watch(isLightMood, (currentIconName, prevIconName) => {
   if (currentIconName === true) {
